@@ -15,10 +15,10 @@ Demographics were missing from 2 datasets. Of those reporting demographics, 2 re
 
 
 Table 1
-![alt text](/Users/pony8/Pictures/Knee_MRI_datasets_table.png)
+![image](https://user-images.githubusercontent.com/59489753/179047768-b9327bba-d8a4-437e-bd38-c667795febd4.png)
 
 Figure 1
-![alt text](/Users/pony8/Pictures/CMIMI_2022_Figure1.png)
+![image](https://user-images.githubusercontent.com/59489753/179047834-0dfa9ee6-2fa7-40a6-a4b8-614bceced202.png)
 
 
 **Getting Started:** Installation instructions. Your project should either have a requirements.txt or an anaconda enviornment file to allow users to directly set up a virtual environment for your project.
