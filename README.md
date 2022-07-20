@@ -21,7 +21,21 @@ Figure 1
 ![image](https://user-images.githubusercontent.com/59489753/179047834-0dfa9ee6-2fa7-40a6-a4b8-614bceced202.png)
 
 
-**Getting Started:** Installation instructions. Your project should either have a requirements.txt or an anaconda enviornment file to allow users to directly set up a virtual environment for your project.
+**Getting Started:** Each classification model has a file named requirements.txt for reference to set up a virtual environment compatible with the model. 
+Installation:
+dill==0.3.5.1
+fastai==2.7.6
+fastbook==0.0.26
+gdcm==1.1
+matplotlib==3.5.1
+numpy==1.21.5
+pandas==1.4.3
+Pillow==9.2.0
+pydicom==2.3.0
+scikit_image==0.19.2
+seaborn==0.11.2
+skimage==0.0
+torch==1.10.2+cu113
 
 **Usage:** Instructions on how to use your code?
 
