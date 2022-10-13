@@ -16,7 +16,7 @@ from pathlib import Path
 
 #%%
 # Insert parent directory's path
-path = 'insert path here'
+path = '/home/vivianzhang/Desktop/fastMRI/curated_dataset/training/sagittal/sagittal_nfs_total'
 
 #assign labels
 def label_folder(parent, label_dict):
@@ -27,25 +27,28 @@ def label_folder(parent, label_dict):
             file = pydicom.data.data_manager.get_files(parent,file_name)[0]
             file_path = "".join((parent, "/", file_name))
             
-            #split file path into specific names
-            names = file_path.split('/')
-            hospital = names[6]
-            patient = names[6]
-            study = names[7]\
-            
-            # if you need to actually read the dicom
-            ds = pydicom.dcmread(file)
-            description = ds.SeriesDescription.lower()
-            sex = ds.PatientSex
-
-            #create list of things to put into dataframe
-            labels = [patient, hospital, study, description, sex, birthdate, acq_date]
-            
-            #add to dictionary
-            if file_path not in label_dict:
-                label_dict[file_path] = labels
-            else:
-                return
+            if 'sagittal_nfs' in file_path:
+                #split file path into specific names
+                names = file_path.split('sagittal_nfs_total')
+                #hospital = names[6]
+                #patient = names[6]
+                #study = names[7]
+                synth_fpath = names[0] + 'sagittal_fs_total' + names[1]
+                
+                # if you need to actually read the dicom
+                #ds = pydicom.dcmread(file)
+                #description = ds.SeriesDescription.lower()
+                #sex = ds.PatientSex
+    
+                #create list of things to put into dataframe
+                #labels = [patient, hospital, study, description, sex, birthdate, acq_date]
+                
+                
+                #add to dictionary
+                if file_path not in label_dict:
+                    label_dict[file_path] = synth_fpath
+                else:
+                    return
         else:
             #iterate on loop
             current_path = "".join((parent, "/", file_name))
@@ -67,7 +70,7 @@ labels = label_folder(path, label_dict)
 #%% export
 
 #export to dataframe
-df = pd.DataFrame.from_dict(data = label_dict, orient = 'index', columns = ['column titles here',...)
+df = pd.DataFrame.from_dict(data = label_dict, orient = 'index', columns = ['synth_path'])
 
 #export to excel file
-#df.to_csv('name.csv', sep=str(','), index = True)
+df.to_csv('/home/vivianzhang/Desktop/fastMRI/train_cor_registration.csv', sep = str(','), index = True, index_label = 'orig_path')
