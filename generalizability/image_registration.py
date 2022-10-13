@@ -92,8 +92,8 @@ for i in df.index:
     #corr = np.corrcoef(orig_array.flatten(), synth_array.flatten())[0,1]
 
     #gather file information and name
-    files = synth_path.split('coronal_fs_total')
-    new_folder = files[0] + 'coronal_fs_reg'
+    files = synth_path.split('sagittal_fs_total')
+    new_folder = files[0] + 'sagittal_fs_reg'
     new_path = new_folder + files[1]
     
     names = files[1].split('/')
