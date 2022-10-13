@@ -73,4 +73,4 @@ labels = label_folder(path, label_dict)
 df = pd.DataFrame.from_dict(data = label_dict, orient = 'index', columns = ['synth_path'])
 
 #export to excel file
-df.to_csv('/home/vivianzhang/Desktop/fastMRI/train_cor_registration.csv', sep = str(','), index = True, index_label = 'orig_path')
+df.to_csv('/home/vivianzhang/Desktop/fastMRI/train_sag_registration.csv', sep = str(','), index = True, index_label = 'orig_path')
