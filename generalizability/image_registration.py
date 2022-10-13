@@ -27,7 +27,7 @@ excel = '/home/vivianzhang/Desktop/fastMRI/train_sag_registration.csv'
 df = pd.read_csv(excel, index_col = None, header = 0)  
     
     
-#%% get ssim and corr
+#%% image registration
 #create empty dictionary
 total_values = dict()
 
@@ -107,8 +107,9 @@ for i in df.index:
     
     if not os.path.exists(new_study):
         os.mkdir(new_study)
-        
-    synth_file.save_as(new_path)
+    
+    if not os.path.exists(new_path):
+        synth_file.save_as(new_path)
     
     #create dictionary
     #stats = [study, orig_path, synth_path, ssim_score, corr]
