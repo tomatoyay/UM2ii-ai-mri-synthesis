@@ -16,7 +16,7 @@ from pathlib import Path
 
 #%%
 # Insert parent directory's path
-path = '/home/vivianzhang/Desktop/fastMRI/curated_dataset/training/sagittal/sagittal_nfs_total'
+path = '/home/vivianzhang/Desktop/Gradient/curated_dataset/sm_test/6283dfee82415fbfdd60fa57'
 
 #assign labels
 def label_folder(parent, label_dict):
@@ -27,13 +27,13 @@ def label_folder(parent, label_dict):
             file = pydicom.data.data_manager.get_files(parent,file_name)[0]
             file_path = "".join((parent, "/", file_name))
             
-            if 'sagittal_nfs' in file_path:
+            if 'coronal_nfs' in file_path:
                 #split file path into specific names
-                names = file_path.split('sagittal_nfs_total')
+                names = file_path.split('coronal_nfs')
                 #hospital = names[6]
                 #patient = names[6]
                 #study = names[7]
-                synth_fpath = names[0] + 'sagittal_fs_total' + names[1]
+                synth_fpath = names[0] + 'coronal_fs' + names[1]
                 
                 # if you need to actually read the dicom
                 #ds = pydicom.dcmread(file)
@@ -73,4 +73,4 @@ labels = label_folder(path, label_dict)
 df = pd.DataFrame.from_dict(data = label_dict, orient = 'index', columns = ['synth_path'])
 
 #export to excel file
-df.to_csv('/home/vivianzhang/Desktop/fastMRI/train_sag_registration.csv', sep = str(','), index = True, index_label = 'orig_path')
+df.to_csv('/home/vivianzhang/Desktop/Gradient/sm_test_cor.csv', sep = str(','), index = True, index_label = 'orig_path')
