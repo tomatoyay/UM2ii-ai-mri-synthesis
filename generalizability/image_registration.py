@@ -77,49 +77,48 @@ for i in df.index:
     synth_file.Rows, synth_file.Columns = synth_array.shape
     synth_file.SeriesDescription = desc + ' REGISTERED'
     synth_file.file_meta.TransferSyntaxUID = ExplicitVRLittleEndian
+    synth_file.PixelRepresentation = 0
     
     # print the image information given in the dataset
     #print(synth_file)
     #print(synth_file.pixel_array.size)
     #print(len(synth_file.PixelData))
     
-    # fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(10, 4),
-    #                           sharex=True, sharey=True)
-    # ax = axes.ravel()
+    fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(10, 4),
+                               sharex=True, sharey=True)
+    ax = axes.ravel()
     
     #get scores
     #ssim_score = ssim(orig_array, synth_array)
     #corr = np.corrcoef(orig_array.flatten(), synth_array.flatten())[0,1]
 
     #gather file information and name
-    files = synth_path.split('sagittal_fs_total')
-    new_folder = files[0] + 'sagittal_fs_reg'
+    files = synth_path.split('coronal_fs')
+    new_folder = files[0] + 'coronal_fs_reg'
     new_path = new_folder + files[1]
     
     names = files[1].split('/')
     new_study = new_folder + '/' + names[1]
-    # print(new_study)
-    # print(new_folder)
-    # print(new_path)
+    print(sdfs)
     
-    if not os.path.exists(new_folder):
-        os.mkdir(new_folder)
+    #if not os.path.exists(new_folder):
+    #    os.mkdir(new_folder)
     
-    if not os.path.exists(new_study):
-        os.mkdir(new_study)
+    #if not os.path.exists(new_study):
+    #    os.mkdir(new_study)
     
-    if not os.path.exists(new_path):
-        synth_file.save_as(new_path)
+    #if not os.path.exists(new_path):
+    #    synth_file.save_as(new_path)
     
     #create dictionary
     #stats = [study, orig_path, synth_path, ssim_score, corr]
     #total_values[i] = stats
     
-    # ax[0].imshow(orig_array, cmap = 'gray')
-    # ax[0].set_title('Original Image')
+    ax[0].imshow(orig_array, cmap = 'gray')
+    ax[0].set_title('Original Image')
  
-    # ax[1].set_title('Synthetic Image')
-    # ax[1].imshow(synth_before, cmap = 'gray')
+    ax[1].set_title('Synthetic Image')
+    ax[1].imshow(synth_before, cmap = 'gray')
     
     # ax[2].imshow(synth_array, cmap = 'gray')
     # ax[2].set_title('Synthetic Image Registered')
@@ -128,6 +127,7 @@ for i in df.index:
     # plt.show()
     #print(sdfs)
 
+print('done')
     
 #%% export
 
@@ -149,8 +149,18 @@ ds = pydicom.dcmread(new_path)
 
 plt.imshow(ds.pixel_array, cmap=plt.cm.bone) 
 
+print(ds.PixelRepresentation)
 
-        
+#%%
+fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 4),
+                           sharex=True, sharey=True)
+ax = axes.ravel()
+ax[0].imshow(a, cmap = 'gray')
+ax[0].set_title('uint16')
+ 
+ax[1].set_title('int16')
+ax[1].imshow(b, cmap = 'gray')
+    
 #%% get ssim and corr
 #create empty dictionary
 total_values = dict()
